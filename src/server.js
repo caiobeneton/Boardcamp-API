@@ -13,5 +13,5 @@ app.use((req, res) => {
     res.status(404).send("Rota não encontrada!")
 })
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 4000
 app.listen(port, () => console.log(`Server running in port ${port}`))

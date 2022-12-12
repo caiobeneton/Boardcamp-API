@@ -3,6 +3,7 @@ import cors from "cors"
 import dotenv from "dotenv"
 import categoryRoutes from "./routes/categories.routes.js"
 import gamesRoutes from "./routes/games.routes.js"
+import customersRoutes from "./routes/customers.routes.js"
 
 dotenv.config()
 

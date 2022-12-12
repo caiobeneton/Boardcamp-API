@@ -79,3 +79,15 @@ export async function postRental(req, res) {
     }
 
 }
+
+export async function deleteRental(req, res) {
+    const {id} = req.params
+
+    try {
+        await connection.query(`DELETE FROM rentals WHERE id = $1;`, [id])
+
+        res.sendStatus(200)
+    } catch (error) {
+        res.sendStatus(500)
+    }
+}

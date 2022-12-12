@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 import categoryRoutes from "./routes/categories.routes.js"
 import gamesRoutes from "./routes/games.routes.js"
 import customersRoutes from "./routes/customers.routes.js"
+import rentalRoutes from "./routes/rent.routes.js"
 
 dotenv.config()
 
@@ -13,6 +14,8 @@ app.use(json())
 
 app.use(categoryRoutes)
 app.use(gamesRoutes)
+app.use(customersRoutes)
+app.use(rentalRoutes)
 
 app.use((req, res) => {
     res.status(404).send("Rota não encontrada!")

@@ -29,3 +29,19 @@ export async function getCustomer(req, res) {
         res.sendStatus(500)
     }
 }
+
+export async function getCustomerById(req, res) {
+    const { id } = req.params;
+
+    try {
+        const customer = await connection.query(`SELECT * FROM customers WHERE id = $1;`, [id])
+
+        if (customer.rows.length > 0) {
+            return res.send(customer.rows[0])
+        }
+
+        return res.status(404).send('Not Found')
+    } catch (error) {
+        res.sendStatus(500)
+    }
+}

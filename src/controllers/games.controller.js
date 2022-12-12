@@ -1,8 +1,18 @@
 import connection from "../database/database.js";
 
 export async function getGames(req, res) {
+    const query = req.query.name?.toLowerCase()
+
     try {
-        const games = await connection.query("SELECT * FROM games;")
+
+        if (query) {
+            const games = await connection.query(`SELECT games.*, categories.name AS "categoryName" FROM games JOIN categories ON "games.categoryId" = categories.id WHERE (games.name) LIKE CONCAT
+            (CAST($1 AS TEXT),'%');`)
+
+            return res.send(games.rows)
+        }
+
+        const games = await connection.query(`SELECT games.*, categories.name AS "categoryName" FROM games JOIN categories ON "games.categoryId" = categories.id;`)
         res.send(games.rows)
     } catch (err) {
         res.sendStatus(500)

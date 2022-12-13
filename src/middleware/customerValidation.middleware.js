@@ -14,7 +14,7 @@ export async function customerValidation(req, res, next) {
     try {
         const checkCPF = await connection.query(
             `SELECT * FROM customers WHERE cpf = $1`,
-            [cpf]
+            [customer.cpf]
         )
 
         if (checkCPF.rows.length > 0) {
